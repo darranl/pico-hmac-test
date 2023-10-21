@@ -30,7 +30,6 @@
 
 void hmac_test(struct data_element *the_data)
 {
-    printf("\n\n\nStarting HMAC Test!!!\n\n");
     uint32_t raw_key_size = the_data->key_length / 2;
     char raw_key[raw_key_size];
     char *hex_key = the_data->hex_key;
@@ -64,7 +63,6 @@ void hmac_test(struct data_element *the_data)
     {
         uint32_t test_int = mac[i];
         uint32_to_hex_string(mac[i], digest_hex);
-        printf("%s", digest_hex);
         for (short byte = 0 ; byte < 8 && success ; byte++)
         {
             char charOne = digest_hex[byte];
@@ -97,7 +95,7 @@ int main()
     printf("+-------+-------------+-----------------+\n");
 }
 
-
+#ifdef LOG_DATA
 void log_data(char * data, uint32_t length) {
     short word_pos = 4;
     short word_count = 0;
@@ -122,6 +120,7 @@ void log_data(char * data, uint32_t length) {
 
     printf("\n");
 }
+#endif
 
 #ifdef LOG_ARRAY
 void log_words(uint32_t * words) {
